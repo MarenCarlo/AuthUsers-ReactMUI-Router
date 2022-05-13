@@ -1,10 +1,8 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {
-  MemoryRouter,
   Route,
   Routes,
   Outlet,
@@ -12,24 +10,6 @@ import {
   matchPath,
   useLocation,
 } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
-
-function Router(props) {
-  const { children } = props;
-  if (typeof window === 'undefined') {
-    return <StaticRouter location="/login">{children}</StaticRouter>;
-  }
-
-  return (
-    <MemoryRouter initialEntries={['/login']} initialIndex={0}>
-      {children}
-    </MemoryRouter>
-  );
-}
-
-Router.propTypes = {
-  children: PropTypes.node,
-};
 
 function useRouteMatch(patterns) {
   const { pathname } = useLocation();
